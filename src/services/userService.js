@@ -1,19 +1,25 @@
-import { userData } from '../data/jsonData';
 import User from '../entities/User';
 
-const fetchUsers = () => {
-    const users = userData.results.map(rawUser => {
-        return new User(rawUser.name.first, rawUser.picture.thumbnail);
-    });
+const BASE_URL = 'https://randomuser.me/api/?results=15';
 
-    return users;
-};
+const fetchUserData = () => {
+    return fetch(BASE_URL)
+        .then((response) => {
+            return response.json();
+        })
+        .then((result) => {
+            console.log(result);
+
+            const userArray = result.results;
+            const ourUsers = userArray.map((user) => {
+                return new User(user.picture, user.name.first, user.email, user.registered.date);
+            });
 
 
-// const userList = props.listOfUsers.map((user) => {
-//     return <UserItem name={user.name.first} email={user.email} dateOfBirth={(new Date(user.dob.date)).toLocaleDateString()} picture={user.picture.medium} />
-// })
+            return ourUsers;
+        });
+}
 
 export {
-    fetchUsers
+    fetchUserData
 }

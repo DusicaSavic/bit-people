@@ -1,9 +1,11 @@
 // class User
 
 class User {
-    constructor(name, photo) {
-        this.name = name;
+    constructor(photo, name, email, dateOfBirth) {
         this.photo = photo;
+        this.name = name;
+        this.email = email;
+        this.dateOfBirth = dateOfBirth;
     }
 }
 

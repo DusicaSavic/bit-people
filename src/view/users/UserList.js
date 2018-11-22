@@ -1,18 +1,18 @@
 
 import React from 'react'
-import { UserItem } from './UserItem'
+import { UserListItem } from './UserListItem'
 
 const UserList = (props) => {
 
     const userList = props.users.map((user, index) => {
-        return <UserItem photo={user.photo} email={'bit@bit.com'} />
-    })
+        return <UserListItem key={index} photo={user.photo.thumbnail} name={user.name} email={user.email} dateOfBirth={user.dateOfBirth} />
+    });
 
     return (
-        <div>
-            {userList};
-        </div>
-    )
+        <ul className="collection">
+            {userList}
+        </ul>
+    );
 }
 
 export {

@@ -2,23 +2,43 @@ import React, { Component } from 'react'
 import { Header } from "./partials/header"
 import { Footer } from "./partials/footer"
 import { UserList } from "./users/UserList"
-import { fetchUsers } from "../services/userService"
-
+import { fetchUserData } from "../services/userService"
+import './App.css';
 
 class App extends Component {
-  render() {
-    const users = fetchUsers();
+	constructor(props) {
+		super(props)
+		this.state = {
+			isGrid: false,
+			users: [],
+		}
+	}
 
-    return (
-      <div>
-        <Header />
-        <main>
-          <UserList users={users} />
-        </main>
-        <Footer />
-      </div>
-    )
-  }
+	componentDidMount() {
+		const users = fetchUserData();
+
+		users.then((listOfUsers) => {
+			console.log(listOfUsers);
+			this.setState({
+				users: listOfUsers
+			});
+			console.log(this.state);
+		});
+
+	}
+
+
+	render() {
+		return (
+			<div>
+				<Header />
+				<main>
+					<UserList users={this.state.users} />
+				</main>
+				<Footer />
+			</div>
+		);
+	}
 }
 
 
