@@ -24,7 +24,7 @@ const UserCardItem = (props) => {
 }
 
 UserCardItem.propTypes = {
-    photo: PropTypes.object
+    photo: PropTypes.string
 }
 
 UserCardItem.defaultProps = {

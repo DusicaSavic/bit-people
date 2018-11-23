@@ -10,14 +10,17 @@ class App extends Component {
 		super(props)
 		this.state = {
 			headerTitle: '',
-			isGrid: false,
+			isGrid: this.isGridLayoutInUse(),
 			users: [],
 		}
 	}
 
+	isGridLayoutInUse() {
+		return !!JSON.parse(localStorage.getItem('isGrid'));
+	}
+
 	componentDidMount() {
 		const users = fetchUserData();
-
 		users.then((listOfUsers) => {
 			console.log(listOfUsers);
 			this.setState({
@@ -29,14 +32,27 @@ class App extends Component {
 
 	}
 
+	changeUsers = () => {
+		const users = fetchUserData();
+
+		users.then((listOfUsers) => {
+			this.setState({
+				users: listOfUsers
+			});
+		});
+	}
+
 	changeView = () => {
-		this.setState({ isGrid: !this.state.isGrid })
+		const newLayout = !this.state.isGrid;
+
+		this.setState({ isGrid: newLayout });
+		localStorage.setItem('isGrid', newLayout)
 	}
 
 	render() {
 		return (
 			<div>
-				<Header changeView={this.changeView} title={this.state.headerTitle} isGrid={this.state.isGrid} />
+				<Header changeUsers={this.changeUsers} changeView={this.changeView} title={this.state.headerTitle} isGrid={this.state.isGrid} />
 				<main>
 					<UserList users={this.state.users} isGrid={this.state.isGrid} />
 				</main>

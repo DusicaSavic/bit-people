@@ -1,7 +1,8 @@
 // class User
 
 class User {
-    constructor(photo, name, email, dateOfBirth) {
+    constructor(gender, photo, name, email, dateOfBirth) {
+        this.gender = gender;
         this.photo = photo;
         this.name = name;
         this.email = email;

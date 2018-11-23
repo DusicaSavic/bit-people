@@ -12,7 +12,7 @@ const Header = (props) => {
                 <ul className="right hide-on-med-and-down">
                     <li><a href="sass.html"><i className="material-icons">search</i></a></li>
                     <li><a onClick={props.changeView}>{viewIcon}</a></li>
-                    <li><a href="collapsible.html"><i className="material-icons">refresh</i></a></li>
+                    <li><a onClick={props.changeUsers}><i className="material-icons">refresh</i></a></li>
                 </ul>
             </div>
         </nav>
