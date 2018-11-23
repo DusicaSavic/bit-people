@@ -4,12 +4,13 @@ import PropTypes from 'prop-types'
 
 
 const UserListItem = (props) => {
+    const { photo } = props.user;
     return (
         <li className="collection-item avatar">
-            <img src={props.photo} alt='user' className="circle" />
-            <span className="title">name: {props.name}</span>
-            <p>email: {props.email}</p>
-            <p>date of birth: {props.dateOfBirth}</p>
+            <img src={photo.thumbnail} alt='user' className="circle" />
+            <span className="title">name: {props.user.getFullName()}</span>
+            <p>email: {props.user.getHiddenEmail()}</p>
+            <p>date of birth: {props.user.getBirthFormat()}</p>
         </li>
     )
 }

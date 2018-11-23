@@ -12,7 +12,11 @@ const fetchUserData = () => {
 
             const userArray = result.results;
             const ourUsers = userArray.map((user) => {
-                return new User(user.picture, user.name.first, user.email, user.registered.date);
+
+                const { picture, name, email, registered } = user;
+                const dob = new Date(registered.date);
+
+                return new User(picture, name, email, dob);
             });
 
 

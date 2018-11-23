@@ -9,6 +9,7 @@ class App extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			headerTitle: '',
 			isGrid: false,
 			users: [],
 		}
@@ -20,6 +21,7 @@ class App extends Component {
 		users.then((listOfUsers) => {
 			console.log(listOfUsers);
 			this.setState({
+				headerTitle: 'React Users',
 				users: listOfUsers
 			});
 			console.log(this.state);
@@ -27,13 +29,16 @@ class App extends Component {
 
 	}
 
+	changeView = () => {
+		this.setState({ isGrid: !this.state.isGrid })
+	}
 
 	render() {
 		return (
 			<div>
-				<Header />
+				<Header changeView={this.changeView} title={this.state.headerTitle} isGrid={this.state.isGrid} />
 				<main>
-					<UserList users={this.state.users} />
+					<UserList users={this.state.users} isGrid={this.state.isGrid} />
 				</main>
 				<Footer />
 			</div>

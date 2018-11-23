@@ -1,16 +1,18 @@
 import React from "react"
-// import './header.css'
+import './header.css'
 
-const Header = () => {
+const Header = (props) => {
+
+    const viewIcon = props.isGrid ? <i className="material-icons list-icon">list</i> : <i className="material-icons">view_module</i>
+
     return (
         <nav>
-            <div class="nav-wrapper">
-                <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Logo</a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="sass.html"><i class="material-icons">search</i></a></li>
-                    <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
-                    <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
-                    <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+            <div className="nav-wrapper">
+                <a href="#!" className="brand-logo title">{props.title}</a>
+                <ul className="right hide-on-med-and-down">
+                    <li><a href="sass.html"><i className="material-icons">search</i></a></li>
+                    <li><a onClick={props.changeView}>{viewIcon}</a></li>
+                    <li><a href="collapsible.html"><i className="material-icons">refresh</i></a></li>
                 </ul>
             </div>
         </nav>

@@ -1,18 +1,40 @@
 
 import React from 'react'
 import { UserListItem } from './UserListItem'
+import { UserCardItem } from './UserCardItem'
 
 const UserList = (props) => {
 
-    const userList = props.users.map((user, index) => {
-        return <UserListItem key={index} photo={user.photo.thumbnail} name={user.name} email={user.email} dateOfBirth={user.dateOfBirth} />
+    const userCards = props.users.map((user, index) => {
+        return <UserCardItem key={index} user={user} />
     });
 
-    return (
-        <ul className="collection">
-            {userList}
-        </ul>
-    );
+    const userList = props.users.map((user, index) => {
+        return <UserListItem key={index} user={user} />
+    });
+
+
+    const renderGrid = () => {
+        return (
+            <div className="container">
+                <div className="row">
+                    {userCards}
+                </div>
+            </div>
+        )
+    }
+
+    const renderList = () => {
+        return (
+            <div className="container">
+                <ul className=" collection">
+                    {userList}
+                </ul>
+            </div>
+        );
+    }
+
+    return props.isGrid ? renderGrid() : renderList();
 }
 
 export {
