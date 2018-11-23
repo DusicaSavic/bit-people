@@ -14,6 +14,13 @@ const Header = (props) => {
                     <li><a onClick={props.changeView}>{viewIcon}</a></li>
                     <li><a onClick={props.changeUsers}><i className="material-icons">refresh</i></a></li>
                 </ul>
+                <form>
+                    <div class="input-field">
+                        <input id="search" type="search" required />
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
             </div>
         </nav>
     )
